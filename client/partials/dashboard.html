@@ -1,3 +1,5 @@
+<!-- <div id="toast-container"></div> -->
+
 <div class="container" ng-controller="mainCtrl">
   <div class="row col-md-12">
     <h2>Data for {{currentMonth}}</h2>
@@ -14,18 +16,29 @@
     <span ng-click='clickme(10)'>Nov</span>
     <span ng-click='clickme(11)'>Dec</span>
     <div>
-      <input type="text" class="input-fields" placeholder="Item" ng-model="item">
-      <input type="text" class="input-fields" placeholder="Price" ng-model="price">
-      <input type="text" class="input-fields" placeholder="Note" ng-model="note">
+      <md-input-container flex>
+        <label>Item</label>
+        <input type="text" ng-model="item" />
+      </md-input-container>
+
+      <md-input-container flex>
+        <label>Price</label>
+        <input type="number" ng-model="price" />
+      </md-input-container>
+
+      <md-input-container flex>
+        <label>Note</label>
+        <input type="text" ng-model="note" />
+      </md-input-container>
       <select ng-model="category">
           <option ng-repeat="option in categoryOptions" value="{{option.id}}">{{option.name}}</option>
       </select>
-      <input type="date" class="input-fields" ng-model="date">
-      <input type="button" class="btn" value="Add" ng-click="save()" />
+        <md-datepicker ng-model="date" md-placeholder="Choose date"></md-datepicker>
 
-      <md-button class="md-primary md-raised" ng-click="showPrompt($event)"  >
-  Prompt Dialog
-</md-button>
+      <md-button class="md-primary md-raised" ng-click="save()">
+        <md-tooltip md-direction="top">Add entry</md-tooltip>
+        Add
+      </md-button>
 
     </div>
   </div>
@@ -34,64 +47,32 @@
       <h3>No items entered yet!</h3>
     </div>
 
-    <div class="expense col-md-12 col-sm-12 col-xs-12"  ng-show="expenses.length > 0">
-      <div class="col-md-2 col-sm-2 col-xs-2">
-        Item
-      </div>
-      <div class="col-md-2 col-sm-2 col-xs-2">
-        Price </div>
-      <div class="col-md-2 col-sm-2 col-xs-2">
-        Note </div>
-        <div class="col-md-2 col-sm-2 col-xs-2">
-          Category </div>
-      <div class="col-md-2 col-sm-2 col-xs-2">
-        Date </div>
-    </div>
+    <md-content>
+      <md-list>
+        <md-list-item class="md-3-line" ng-repeat="expense in expenses">
+          <span>{{expense.date | date}}</span>
+          <div class="md-list">
+            <h3>{{expense.item}}</h3>
+            <h4>{{expense.category.name}}</h4>
+            <p>{{expense.note}}</p>
+          </div>
+          <span>{{expense.price}}</span>
+          <div class="col-md-2 col-sm-2 col-xs-2">
+            <md-button class="md-primary md-raised" ng-click="editData($index)">
+              <md-tooltip md-direction="top">Edit entry</md-tooltip>
+              Edit
+            </md-button>
+            <md-button class="md-warn md-raised md-hue-2" ng-click="delete($index)">
+              <md-tooltip md-direction="top">Delete entry</md-tooltip>
+              Delete
+            </md-button>
+          </div>
+          <md-divider md-inset ng-if="!$last"></md-divider>
+        </md-list-item>
+      </md-list>
+    </md-content>
 
 
-
-    <div ng-repeat="expense in expenses" class="expense col-md-12 col-sm-12 col-xs-12">
-      <div ng-if="!editable">
-        <div class="col-md-2 col-sm-2 col-xs-2">
-          <span class="table-content">{{expense.item}}</span>
-        </div>
-        <div class="col-md-2 col-sm-2 col-xs-2">
-          <span class="table-content">{{expense.price}}</span>
-        </div>
-        <div class="col-md-2 col-sm-2 col-xs-2">
-          <span class="table-content">{{expense.note}}</span>
-        </div>
-        <div class="col-md-2 col-sm-2 col-xs-2">
-          <span class="table-content">{{expense.category.name}}</span>
-        </div>
-        <div class="col-md-2 col-sm-2 col-xs-2">
-          <span class="table-content">{{expense.date | date}}</span>
-        </div>
-      </div>
-      <div ng-if="editable">
-        <div class="col-md-2 col-sm-2 col-xs-2">
-          <input type="text" class="input-fields" placeholder="{{item}}" ng-model="item">
-        </div>
-        <div class="col-md-2 col-sm-2 col-xs-2">
-          <input type="text" class="input-fields" placeholder="{{price}}" ng-model="price">
-        </div>
-        <div class="col-md-2 col-sm-2 col-xs-2">
-          <input type="text" class="input-fields" placeholder="{{note}}" ng-model="note">
-        </div>
-        <div class="col-md-2 col-sm-2 col-xs-2">
-          <input>{{expense.date | date}}</span>
-        </div>
-        <input type="button" class="btn btn-warning pull-right" value="Cancel" ng-click="cancel1" />
-      </div>
-
-      <div class="col-md-2 col-sm-2 col-xs-2">
-        <!-- <input type="button" class="btn btn-info" class="pull-right" value="Edit" ng-click="editEntry($index)" /> -->
-        <span ng-click="" title="Edit Entry" class="glyphicon glyphicon-pencil pencil-icon"></span>
-        <span ng-click="delete($index)" title="Delete Entry" class="glyphicon glyphicon-remove remove-icon"></span>
-        <!-- <input type="button" class="btn btn-danger" class="pull-right" value="Delete" ng-click="delete($index)" /> -->
-      </div>
-
-    </div>
   </div>
 
   <div class="row col-md-6">

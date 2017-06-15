@@ -1,0 +1,52 @@
+<md-dialog>
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Edit entry</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+
+        <md-input-container flex>
+          <label>Item</label>
+          <input type="text" ng-model="expense.item" />
+        </md-input-container>
+
+        <md-input-container flex>
+          <label>Price</label>
+          <input type="text" ng-model="expense.price" />
+        </md-input-container>
+        <md-input-container flex>
+          <label>Note</label>
+          <input type="text" ng-model="expense.note" />
+        </md-input-container>
+        <!-- <md-input-container flex>
+          <label>Category</label>
+          <input type="text" ng-model="expense.category" />
+        </md-input-container> -->
+        <md-input-container flex>
+
+        <md-datepicker ng-model="expense.date" md-placeholder="Choose date"></md-datepicker>
+      </md-input-container>
+
+
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button ng-click="cancel()">
+      Cancel
+      </md-button>
+      <md-button ng-click="answer()">
+        Save
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

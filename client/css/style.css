@@ -5,8 +5,16 @@
   font-family: calibri;
 }
 
+#toast-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 header {
-  padding: .5em;
+  height: 3em;
   color: white;
   background-color: #4576b8;
   clear: left;

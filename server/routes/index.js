@@ -9,8 +9,8 @@
     res.render('index');
   });
   router.get('/expenses/:month/:year', function(req, res) {
-    var month = parseInt(req.originalUrl.split('/')[3]);
-    var year = parseInt(req.originalUrl.split('/')[4])+1900;
+    var month = parseInt(req.originalUrl.split('/')[2]);
+    var year = parseInt(req.originalUrl.split('/')[3])+1900;
     var start = new Date(year, month).getTime();
     var end = new Date(year, month+1).getTime();
     db.expenses.find( {date: {$gte: start, $lt: end}}, function(err, data) {
@@ -26,8 +26,12 @@
     db.expenses.update({
       _id: mongojs.ObjectId(req.body._id)
     }, {
-      isCompleted: req.body.isCompleted
-    }, {}, function(err, data) {
+      item: req.body.item,
+      price: req.body.price,
+      note: req.body.note,
+      category: req.body.category,
+      date: req.body.date
+    }, function(err, data) {
       res.json(data);
     });
   });
