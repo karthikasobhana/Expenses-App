@@ -48,33 +48,61 @@
     </div>
 
     <md-content>
-      <md-list>
-        <md-list-item class="md-3-line" ng-repeat="expense in expenses">
-          <span>{{expense.date | date}}</span>
-          <div class="md-list">
-            <h3>{{expense.item}}</h3>
-            <h4>{{expense.category.name}}</h4>
-            <p>{{expense.note}}</p>
-          </div>
-          <span>{{expense.price}}</span>
-          <div class="col-md-2 col-sm-2 col-xs-2">
-            <md-button class="md-primary md-raised" ng-click="editData($index)">
-              <md-tooltip md-direction="top">Edit entry</md-tooltip>
-              Edit
-            </md-button>
-            <md-button class="md-warn md-raised md-hue-2" ng-click="delete($index)">
-              <md-tooltip md-direction="top">Delete entry</md-tooltip>
-              Delete
-            </md-button>
-          </div>
-          <md-divider md-inset ng-if="!$last"></md-divider>
-        </md-list-item>
-      </md-list>
-    </md-content>
-
-
+      <md-grid-list
+      md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="10"
+      md-row-height-gt-md="60" ng-repeat="expense in expenses" >
+      <md-grid-tile
+                    md-rowspan="1"
+                    md-colspan="1"
+                    ng-class="green" >
+                    <h4>{{expense.date|date:'MMM'}}</h4>
+                    <h3>{{expense.date|date:'d'}}</h3>
+      </md-grid-tile>
+      <md-grid-tile
+                    md-rowspan="1"
+                    md-colspan="1"
+                    ng-class="green" >
+                    {{expense.category.name}}
+      </md-grid-tile>
+      <md-grid-tile
+                    md-rowspan="1"
+                    md-colspan="1"
+                    ng-class="green" >
+                    {{expense.item}}
+      </md-grid-tile>
+      <md-grid-tile
+                    md-rowspan="1"
+                    md-colspan="1"
+                    ng-class="green" >
+                    {{expense.price}}
+      </md-grid-tile>
+      <md-grid-tile
+                    md-rowspan="1"
+                    md-colspan="1"
+                    ng-class="green" >
+                    {{expense.note}}
+      </md-grid-tile>
+      <md-grid-tile
+                    md-rowspan="1"
+                    md-colspan="1"
+                    ng-class="green" >
+                    <md-button class="md-primary md-raised" ng-click="editData($index)">
+                      <md-tooltip md-direction="top">Edit entry</md-tooltip>
+                      Edit
+                    </md-button>
+      </md-grid-tile>
+      <md-grid-tile
+                    md-rowspan="1"
+                    md-colspan="1"
+                    ng-class="green" >
+                    <md-button class="md-warn md-raised md-hue-2" ng-click="delete($index)">
+                      <md-tooltip md-direction="top">Delete entry</md-tooltip>
+                      Delete
+                    </md-button>
+      </md-grid-tile>
+    </md-grid-list>
+  </md-content>
   </div>
-
   <div class="row col-md-6">
     <div id="piechart" style="width: 900px; height: 500px;"></div>
   </div>

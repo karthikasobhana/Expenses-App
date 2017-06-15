@@ -83,7 +83,7 @@ expenseApp.controller('mainCtrl', function($rootScope, $scope, expenseFactory, $
       "category": $scope.categoryOptions[$scope.category - 1],
       "date": date
     }).then(function(data) {
-      $scope.expenses.push(data.data);
+      $scope.expenses.unshift(data.data);
       // $scope.getDataForCharts();
       // google.charts.setOnLoadCallback(drawChart);
 

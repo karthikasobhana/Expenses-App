@@ -14,7 +14,7 @@
     var start = new Date(year, month).getTime();
     var end = new Date(year, month+1).getTime();
     db.expenses.find( {date: {$gte: start, $lt: end}}, function(err, data) {
-      res.json(data);
+      res.json(data.reverse());
     });
   });
   router.post('/expenses', function(req, res) {
