@@ -1,0 +1,100 @@
+<div class="container" ng-controller="mainCtrl">
+  <div class="row col-md-12">
+    <h2>Data for {{currentMonth}}</h2>
+    <span ng-click='clickme(0)'>Jan</span>
+    <span ng-click='clickme(1)'>Feb</span>
+    <span ng-click='clickme(2)'>Mar</span>
+    <span ng-click='clickme(3)'>Apr</span>
+    <span ng-click='clickme(4)'>May</span>
+    <span ng-click='clickme(5)'>Jun</span>
+    <span ng-click='clickme(6)'>Jul</span>
+    <span ng-click='clickme(7)'>Aug</span>
+    <span ng-click='clickme(8)'>Sep</span>
+    <span ng-click='clickme(9)'>Oct</span>
+    <span ng-click='clickme(10)'>Nov</span>
+    <span ng-click='clickme(11)'>Dec</span>
+    <div>
+      <input type="text" class="input-fields" placeholder="Item" ng-model="item">
+      <input type="text" class="input-fields" placeholder="Price" ng-model="price">
+      <input type="text" class="input-fields" placeholder="Note" ng-model="note">
+      <select ng-model="category">
+          <option ng-repeat="option in categoryOptions" value="{{option.id}}">{{option.name}}</option>
+      </select>
+      <input type="date" class="input-fields" ng-model="date">
+      <input type="button" class="btn" value="Add" ng-click="save()" />
+
+      <md-button class="md-primary md-raised" ng-click="showPrompt($event)"  >
+  Prompt Dialog
+</md-button>
+
+    </div>
+  </div>
+  <div class="row col-md-12 expenses">
+    <div class="alert alert-info text-center" ng-hide="expenses.length > 0">
+      <h3>No items entered yet!</h3>
+    </div>
+
+    <div class="expense col-md-12 col-sm-12 col-xs-12"  ng-show="expenses.length > 0">
+      <div class="col-md-2 col-sm-2 col-xs-2">
+        Item
+      </div>
+      <div class="col-md-2 col-sm-2 col-xs-2">
+        Price </div>
+      <div class="col-md-2 col-sm-2 col-xs-2">
+        Note </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          Category </div>
+      <div class="col-md-2 col-sm-2 col-xs-2">
+        Date </div>
+    </div>
+
+
+
+    <div ng-repeat="expense in expenses" class="expense col-md-12 col-sm-12 col-xs-12">
+      <div ng-if="!editable">
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          <span class="table-content">{{expense.item}}</span>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          <span class="table-content">{{expense.price}}</span>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          <span class="table-content">{{expense.note}}</span>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          <span class="table-content">{{expense.category.name}}</span>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          <span class="table-content">{{expense.date | date}}</span>
+        </div>
+      </div>
+      <div ng-if="editable">
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          <input type="text" class="input-fields" placeholder="{{item}}" ng-model="item">
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          <input type="text" class="input-fields" placeholder="{{price}}" ng-model="price">
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          <input type="text" class="input-fields" placeholder="{{note}}" ng-model="note">
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          <input>{{expense.date | date}}</span>
+        </div>
+        <input type="button" class="btn btn-warning pull-right" value="Cancel" ng-click="cancel1" />
+      </div>
+
+      <div class="col-md-2 col-sm-2 col-xs-2">
+        <!-- <input type="button" class="btn btn-info" class="pull-right" value="Edit" ng-click="editEntry($index)" /> -->
+        <span ng-click="" title="Edit Entry" class="glyphicon glyphicon-pencil pencil-icon"></span>
+        <span ng-click="delete($index)" title="Delete Entry" class="glyphicon glyphicon-remove remove-icon"></span>
+        <!-- <input type="button" class="btn btn-danger" class="pull-right" value="Delete" ng-click="delete($index)" /> -->
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row col-md-6">
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+  </div>
+</div>

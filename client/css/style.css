@@ -1,0 +1,47 @@
+* {
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  font-family: calibri;
+}
+
+header {
+  padding: .5em;
+  color: white;
+  background-color: #4576b8;
+  clear: left;
+  text-align: left;
+}
+
+.input-fields {
+  width: 15%;
+}
+
+.table-content {
+  font-size: 15px;
+}
+
+.remove-icon:hover {
+  color: #850000;
+}
+
+.pencil-icon:hover {
+  color: #336072;
+}
+
+.expenses {
+  padding: 20px;
+}
+
+.expense {
+  font-size: 21px;
+  border-bottom: 1px lightgrey solid;
+}
+
+.expense .btn {
+  margin-left: 5px;
+}
+
+.expense:hover {
+  background: #e7e7e7;
+}

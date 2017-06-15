@@ -1,0 +1,27 @@
+{
+  "name": "expenseApp",
+  "version": "0.1.0",
+  "description": "MEAN stack Expenses app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Akash P James",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "debug": "^2.6.8",
+    "ejs": "^2.5.6",
+    "express": "^4.15.3",
+    "mongojs": "^2.4.0",
+    "morgan": "^1.8.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-livereload": "^3.8.1",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-watch": "^4.3.11"
+  }
+}
